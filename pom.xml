@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.claimates</groupId>
+	<artifactId>claimates</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>Azure Communication Service</name>
+	<description>Microservice for handling ACS calls with Text-to-Speech</description>
+
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
+	<dependencies>
+		<!-- Azure Communication Services -->
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-communication-callautomation</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- Azure Identity for Authentication -->
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-identity</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+		<!-- Azure AI Speech Services -->
+		<dependency>
+			<groupId>com.microsoft.cognitiveservices</groupId>
+			<artifactId>speech-sdk</artifactId>
+			<version>1.32.0</version>
+		</dependency>
+
+		<!-- Spring Boot Starter (if using Spring Boot) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<!-- Logging and Observability -->
+		<dependency>
+			<groupId>com.microsoft.applicationinsights</groupId>
+			<artifactId>applicationinsights-logging-logback</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.minidev</groupId>
+			<artifactId>json-smart</artifactId>
+			<version>2.4.7</version>
+		</dependency>
+
+		<!-- Azure Monitor Ingestion -->
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-monitor-ingestion</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Compiler Plugin for Java 17 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>17</source>
+					<target>17</target>
+				</configuration>
+			</plugin>
+
+			<!-- Spring Boot Plugin (if using Spring Boot) -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Azure Web Apps Maven Plugin for Deployment -->
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>1.14.0</version>
+				<configuration>
+					<resourceGroup>claimates-poc</resourceGroup>
+					<appName>your-app-service-name</appName>
+					<region>westus2</region>
+					<runtime>
+						<os>linux</os>
+						<javaVersion>Java 17</javaVersion>
+					</runtime>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
